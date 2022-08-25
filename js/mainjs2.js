@@ -109,6 +109,9 @@ $(function(){
       checkEmail();
       checkPass();
       checkConPass();
+      {
+        Window.location.href="html3.html3"
+      }
   
       if (error_name == false && error_username == false && error_email==false && error_pass == false && error_conpass == false) {
         return true;
@@ -119,3 +122,5 @@ $(function(){
     });
   
   });
+  
+  
