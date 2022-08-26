@@ -1,126 +1,80 @@
-$(function(){
-    
-    $('#errorname').hide();
-    $('#errorusername').hide();
-    $('#erroremail').hide();
-    $('#errorpass').hide();
-    $('#errorconpass').hide();
-  
-    var error_name = false;
-    var error_username = false;
-    var error_email = false;
-    var error_pass = false;
-    var error_conpass = false;
-  
-    $('#form_name').focusout(function(){
-      checkName();
-    });
-    $('#form_username').focusout(function(){
-      checkUserName();
-    });
-    $('#form_email').focusout(function(){
-      checkEmail();
-    });
-    $('#form_pwd').focusout(function(){
-      checkPass();
-    });
-    $('#form_conpwd').focusout(function(){
-      checkConPass();
-    });
-  
-    // check name
-    function checkName(){
-      var name = $('#form_name').val();
-      var pattern = new RegExp(/^[a-zA-Z ]{5,30}$/);
-      if (!pattern.test(name)) {
-        $('#errorname').html('Should be between 5-30 contains only space');
-        $('#errorname').show(300);
-        error_name = true;
-      }
-      else {
-          $('#errorname').hide(400);
-      }
+const form = document.getElementById("form");
+const username = document.getElementById("username");
+const email = document.getElementById("email");
+const password = document.getElementById("password");
+const password2 = document.getElementById("password2");
+
+// Show input error message
+function showError(input, message) {
+  const formControl = input.parentElement;
+  formControl.className = "form-control error";
+  const small = formControl.querySelector("small");
+  small.innerText = message;
+}
+
+// Show success outline
+function showSuccess(input) {
+  const formControl = input.parentElement;
+  formControl.className = "form-control success";
+}
+
+// Check email is valid
+function checkEmail(input) {
+  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  if (re.test(input.value.trim())) {
+    showSuccess(input);
+  } else {
+    showError(input, "Email is not valid");
+  }
+}
+
+// Check required fields
+function checkRequired(inputArr) {
+  inputArr.forEach(function (input) {
+    if (input.value.trim() === "") {
+      showError(input, `${getFieldName(input)} is required`);
+    } else {
+      showSuccess(input);
     }
-    // check username
-    function checkUserName(){
-      var username = $('#form_username').val();
-      var pattern = new RegExp(/^[a-zA-Z0-9._]{6,20}$/);
-      if (!pattern.test(username)) {
-        $('#errorusername').html('Should be between 6-20 contains only alphabets numbers . _');
-        $('#errorusername').show(300);
-        error_username = true;
-      }
-      else {
-          $('#errorusername').hide(400);
-      }
-    }
-  
-    //check email
-    function checkEmail(){
-      var pattern = new RegExp(/^[+a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i);
-      if (pattern.test($("#form_email").val())) {
-        $('#erroremail').hide(400);
-      }
-      else {
-          $('#erroremail').html('Invalid email address');
-          $('#erroremail').show(300);
-          error_email = true;
-      }
-    }
-  
-    // check password
-    function checkPass(){
-      var password = $('#form_pwd').val();
-      var pattern = new RegExp(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/);
-  
-      if (!pattern.test(password)) {
-        $('#errorpass').html('Should be at least a uppercase,lowercase,number,special characters and minimum length 8');
-        $('#errorpass').show(300);
-        error_pass = true;
-      }
-      else {
-          $('#errorpass').hide(400);
-      }
-    }
-  
-    // check confirm password
-    function checkConPass(){
-      var password = $('#form_pwd').val();
-      var con_pass = $('#form_conpwd').val();
-      if (password != con_pass) {
-        $('#errorconpass').html('Password not match');
-        $('#errorconpass').show(300);
-        error_conpass = true;
-      }
-      else {
-          $('#errorconpass').hide(400);
-      }
-    }
-  
-    //form submit
-    $('#reg_form').submit(function(){
-      error_name = false;
-      error_username = false;
-      error_email = false;
-      error_pass = false;
-      error_conpass = false;
-      checkName();
-      checkUserName();
-      checkEmail();
-      checkPass();
-      checkConPass();
-      {
-        Window.location.href="html3.html3"
-      }
-  
-      if (error_name == false && error_username == false && error_email==false && error_pass == false && error_conpass == false) {
-        return true;
-      }
-      else {
-        return false;
-      }
-    });
-  
   });
-  
-  
+}
+
+// Check input length
+function checkLength(input, min, max) {
+  if (input.value.length < min) {
+    showError(
+      input,
+      `${getFieldName(input)} must be at least ${min} characters`
+    );
+  } else if (input.value.length > max) {
+    showError(
+      input,
+      `${getFieldName(input)} must be less than ${max} characters`
+    );
+  } else {
+    showSuccess(input);
+  }
+}
+
+// Check passwords match
+function checkPasswordsMatch(input1, input2) {
+  if (input1.value !== input2.value) {
+    showError(input2, "Passwords do not match");
+  }
+}
+
+// Get fieldname
+function getFieldName(input) {
+  return input.id.charAt(0).toUpperCase() + input.id.slice(1);
+}
+
+// Event listeners
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  checkRequired([username, email, password, password2]);
+  checkLength(username, 3, 15);
+  checkLength(password, 6, 25);
+  checkEmail(email);
+  checkPasswordsMatch(password, password2);
+});

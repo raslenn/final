@@ -1,32 +1,17 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 
 :root {
-  --success-color: #00ff6a;
-  --error-color: #ff1c02;
+  --success-color: #2ecc71;
+  --error-color: #e74c3c;
 }
-/* #00ff6a; */
-/* font-family: "Open Sans", sans-serif; */
+
 * {
   box-sizing: border-box;
 }
 
-html {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    45deg,
-    #160092,
-    #9803d3,
-    #e945c6,
-    #ff5e52,
-    #ffe552
-  );
-  background-size: 600% 100%;
-  animation: gradient 7s linear infinite;
-  animation-direction: alternate;
-}
 body {
-  font-family: "Open Sans", sans-serif;
+  background-color: #f9fafb;
+  font-family: 'Open Sans', sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,45 +19,16 @@ body {
   margin: 0;
 }
 
-/* #f17c58,
-    #e94584,
-    #24aadb,
-    #27dbb1,
-    #ffdc18,
-    #ff5e52 */
-
 .container {
-  position: absolute;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  width: 400px;
 }
 
-#form {
-  background: rgba(255, 255, 255, 0.15);
-  padding: 3em;
-  width: 450px;
-  border-radius: 20px;
-  border-left: 1px solid rgba(255, 255, 255, 0.4);
-  border-top: 1px solid rgba(255, 255, 255, 0.4);
-  -webkit-backdrop-filter: blur(3px);
-  backdrop-filter: blur(3px);
-  box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
+h2 {
   text-align: center;
-  position: relative;
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-}
-
-::placeholder {
-  font-weight: 100;
-  font-size: 19px;
-  opacity: 0.7;
-  font-variant: small-caps;
-  color: rgba(255, 255, 255);
-
-  /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); */
+  margin: 0 0 20px;
 }
 
 .form {
@@ -85,55 +41,36 @@ body {
   position: relative;
 }
 
+.form-control label {
+  color: #777;
+  display: block;
+  margin-bottom: 5px;
+}
+
 .form-control input {
-  font-size: 21px;
-  letter-spacing: 1.5px;
-  background: transparent;
+  border: 2px solid #f0f0f0;
+  border-radius: 4px;
+  display: block;
   width: 100%;
-  padding: 1em;
-  margin-bottom: 0.25em;
-  margin-top: 0.25em;
-  border: none;
-  border-left: 1px solid rgba(255, 255, 255, 0.3);
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50px;
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
-  box-shadow: 4px 4px 60px rgba(0, 0, 0, 0.2);
-  color: #fff;
-  font-weight: 500;
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  font-size: 14px;
 }
 
 .form-control input:focus {
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 4px 4px 60px 8px rgba(0, 0, 0, 0.2);
+  outline: 0;
+  border-color: #777;
 }
 
 .form-control.success input {
   border-color: var(--success-color);
-  border: 5px solid var(--success-color);
-}
-
-.form-control input:hover {
-  background: rgba(255, 255, 255, 0.3);
-  box-shadow: 4px 6px 60px 8px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
 }
 
 .form-control.error input {
   border-color: var(--error-color);
-  border: 5px solid var(--error-color);
-  font-size: 20px;
 }
 
 .form-control small {
-  color: white;
-  letter-spacing: 1.5px;
-
-  text-transform: uppercase;
+  color: var(--error-color);
   position: absolute;
   bottom: 0;
   left: 0;
@@ -142,137 +79,17 @@ body {
 
 .form-control.error small {
   visibility: visible;
-  font-size: 13px;
-  width: 100%;
 }
 
 .form button {
   cursor: pointer;
-  font-size: 18px;
-  letter-spacing: 2px;
-  background: transparent;
-  margin-top: 0.25em;
+  background-color: #3498db;
+  border: 2px solid #3498db;
+  border-radius: 4px;
+  color: #fff;
+  display: block;
+  font-size: 16px;
+  padding: 10px;
+  margin-top: 20px;
   width: 100%;
-  height: 65px;
-  padding: 1em;
-  margin-bottom: 0.25em;
-  border: none;
-  border-left: 1px solid rgba(255, 255, 255, 0.3);
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50px;
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
-  box-shadow: 4px 4px 60px rgba(0, 0, 0, 0.2);
-  color: #fff;
-  text-transform: uppercase;
-  font-weight: 700;
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  outline: none;
-}
-
-.form button:hover {
-  background-color: #000000;
-  border: 1px solid #000000;
-  color: white;
-  cursor: pointer;
-}
-
-.form button:active {
-  background-color: #000000;
-  box-shadow: 0 12px 12px 0 rgba(112, 112, 112, 0.37);
-  transform: translateY(5px);
-}
-
-h2 {
-  text-align: center;
-  font-weight: 600;
-  color: #fff;
-  opacity: 0.8;
-  font-size: 2rem;
-  margin-top: 0;
-  margin-bottom: 30px;
-  letter-spacing: 1.5px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-@keyframes gradient {
-  0% {
-    background-position: 0%;
-  }
-  100% {
-    background-position: 100%;
-  }
-}
-
-.drop {
-  background: rgba(255, 255, 255, 0.06);
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
-  border-radius: 10px;
-  border-left: 1px solid rgba(255, 255, 255, 0.3);
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 10px 10px 60px -8px rgba(0, 0, 0, 0.2);
-  position: absolute;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-  animation: animate 10s linear infinite;
-  animation-delay: calc(-2s * var(--i));
-}
-
-@keyframes animate {
-  0%,
-  100% {
-    transform: translateY(-40px);
-  }
-  50% {
-    transform: translateY(40px);
-  }
-}
-
-.drop-1 {
-  height: 200px;
-  width: 200px;
-  top: -100px;
-  left: -120px;
-  z-index: -1;
-  border-radius: 500px;
-}
-.drop-2 {
-  height: 110px;
-  width: 110px;
-  bottom: -90px;
-  right: -50px;
-  border-radius: 500px;
-}
-.drop-3 {
-  height: 70px;
-  width: 350px;
-  bottom: 170px;
-  right: -200px;
-  z-index: -1;
-  transform: rotate(-45deg);
-}
-.drop-4 {
-  height: 120px;
-  width: 120px;
-  top: -60px;
-  right: -60px;
-}
-.drop-5 {
-  height: 70px;
-  width: 70px;
-  top: 200px;
-  bottom: 170px;
-  left: -210px;
-  z-index: -1;
-}
-
-a,
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-  outline: none;
 }
